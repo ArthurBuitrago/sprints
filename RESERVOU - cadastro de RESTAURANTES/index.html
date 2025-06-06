@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservou - Cadastro de restaurante</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="formulario-container">
+            <h1>Cadastro de RESTAURANTES</h1>
+            <p class="texto-bv">Bem Vindo ao Reservou!</p>
+            <p class="texto-sub">Preencha os campos abaixo e faça seu cadastro</p>
+            
+            <form id="formulario" enctype="multipart/form-data">
+                <div class="grupo-form">
+                    <label for="nome">Nome :</label>
+                    <input type="text" id="nome" name="nome" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="categoria">Categoria :</label>
+                    <input type="text" id="categoria" name="categoria" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="endereco">Endereço :</label>
+                    <input type="text" id="endereco" name="endereco" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="capacidade">Capacidade :</label>
+                    <input type="number" id="capacidade" name="capacidade" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="foto">Foto :</label>
+                    <div class="upload-container">
+                        <span id="nomeArquivo">FAZER UPLOAD</span>
+                        <label for="foto" class="botao-upload">
+                            <i class="fa-solid fa-upload"></i>
+                        </label>
+                        <input type="file" id="foto" name="foto" class="arquivo-input" accept="image/*">
+                    </div>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="telefone">Telefone :</label>
+                    <input type="text" id="telefone" name="telefone" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="senha">Senha :</label>
+                    <input type="password" id="senha" name="senha" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <label for="confirmarSenha">Confirmar senha :</label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha" class="campo-entrada" required>
+                </div>
+                
+                <div class="grupo-form">
+                    <button type="submit" class="botao-enviar">Cadastrar</button>
+                </div>
+            </form>
+        </div>
+        <div class="imagem-container">
+            <div class="icone-topo">
+                <a href="#"><img src="image.png" alt="Ícone Restaurante" class="icone-restaurante"></a>
+            </div>
+            <div class="icone-centro">
+                <img src="image.png" alt="Ícone Mesa Restaurante" class="icone-mesa">
+            </div>
+        </div>
+    </div>
+
+    <script src="db.js"></script>
+    <script>
+        document.getElementById('foto').addEventListener('change', function(event) {
+            const nomeArquivo = event.target.files[0] ? event.target.files[0].name : 'FAZER UPLOAD';
+            document.getElementById('nomeArquivo').textContent = nomeArquivo;
+        });
+
+        function validarFormulario() {
+            const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
+            
+            if (senha !== confirmarSenha) {
+                alert('As senhas não coincidem!');
+                return false;
+            }
+            
+            return true;
+        }
+
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (!validarFormulario()) {
+                return;
+            }
+
+            const formData = new FormData(this);
+            
+            fetch('/salvar', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Restaurante cadastrado com sucesso!');
+                this.reset();
+                document.getElementById('nomeArquivo').textContent = 'FAZER UPLOAD';
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar restaurante!');
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/de4acc705f.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.formulario-container {
+    flex: 1;
+    background-color: #fff8dc;
+    padding: 1rem 1rem 0rem 2rem;
+    position: relative;
+}
+
+.imagem-container {
+    flex: 1;
+    background-color: #800000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+h1 {
+    font-size: 1.7rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.texto-bv {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    font-weight: bold;
+}
+
+.texto-sub {
+    font-size: 0.9rem;
+    margin-bottom: 1.2rem;
+}
+
+.grupo-form {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: #c3852a;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.campo-entrada {
+    width: 100%;
+    padding: 0.2rem 0;
+    border: none;
+    border-bottom: 2px solid #c3852a;
+    background-color: transparent;
+    outline: none;
+    font-size: 0.7rem;
+}
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 2px solid #c3852a;
+    padding: 0.5rem 0;
+    font-size: 0.7rem;
+}
+
+.upload-container i {
+    width: 18px;
+    height: 18px;
+}
+
+.arquivo-input {
+    display: none;
+}
+
+.botao-upload {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 18px;
+    height: 18px;
+}
+
+.botao-upload {
+    width: 18px;
+    height: 18px;
+}
+
+#nomeArquivo {
+    color: #c3852a;
+    font-weight: bold;
+}
+
+.botao-enviar {
+    background-color: #c3852a;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.7rem;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500;
+}
+
+.botao-enviar:hover {
+    background-color: #a56f22;
+}
+
+.icone-restaurante {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 70px;
+    height: 70px;
+}
+
+.icone-mesa {
+    width: 200px;
+    height: 200px;
+}
+
+.icone-centro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
