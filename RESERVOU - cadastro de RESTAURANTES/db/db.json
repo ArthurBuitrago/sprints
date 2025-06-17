@@ -1,0 +1,22 @@
+[
+  {
+    "nome": "Pizzaria Bella",
+    "imagemUrl": "img/default.jpg",
+    "endereco": "Rua A, 200",
+    "telefone": "1234567890",
+    "capacidade": 50,
+    "categoria": "Pizzaria",
+    "email": "pizza@mail.com",
+    "password": "1234"
+  },
+  {
+    "nome": "Sabor Mineiro",
+    "imagemUrl": "img/default.jpg",
+    "endereco": "Rua A, 100",
+    "telefone": "(31) 98765-4321",
+    "capacidade": 40,
+    "categoria": "Churrascaria",
+    "email": "contato@sabormineiro.com.br",
+    "password": "1234"
+  }
+]

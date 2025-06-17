@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservou - Cadastro de restaurante</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/styles/styles.css">
 </head>
 <body>
     <div class="container">
@@ -72,15 +72,14 @@
         </div>
         <div class="imagem-container">
             <div class="icone-topo">
-                <a href="#"><img src="image.png" alt="Ícone Restaurante" class="icone-restaurante"></a>
+                <a href="#"><img src="assets/img/image.png" alt="Ícone Restaurante" class="icone-restaurante"></a>
             </div>
             <div class="icone-centro">
-                <img src="image.png" alt="Ícone Mesa Restaurante" class="icone-mesa">
+                <img src="assets/img/image.png" alt="Ícone Mesa Restaurante" class="icone-mesa">
             </div>
         </div>
     </div>
 
-    <script src="db.js"></script>
     <script>
         document.getElementById('foto').addEventListener('change', function(event) {
             const nomeArquivo = event.target.files[0] ? event.target.files[0].name : 'FAZER UPLOAD';

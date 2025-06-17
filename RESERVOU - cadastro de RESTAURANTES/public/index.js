@@ -7,13 +7,27 @@ const multer = require('multer');
 const app = express();
 const port = 3000;
 
+const uploadDir = path.join(__dirname, '..', 'img');
+const dbDir = path.join(__dirname, '..', 'db');
+const jsonFile = path.join(dbDir, 'db.json');
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('./'));
+
+app.use(express.static(path.join(__dirname)));
+app.use('/img', express.static(uploadDir));
+
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'img/');
+    cb(null, uploadDir); 
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -27,12 +41,11 @@ app.get('/', (req, res) => {
 });
 
 app.post('/salvar', upload.single('foto'), (req, res) => {
-  const jsonFile = 'restaurantes.json';
   let restaurantes = [];
 
   if (fs.existsSync(jsonFile)) {
-    const data = fs.readFileSync(jsonFile);
-    restaurantes = JSON.parse(data);
+    const data = fs.readFileSync(jsonFile, 'utf-8');
+    restaurantes = data ? JSON.parse(data) : [];
   }
 
   const novoRestaurante = {
@@ -42,14 +55,13 @@ app.post('/salvar', upload.single('foto'), (req, res) => {
     telefone: req.body.telefone,
     capacidade: parseInt(req.body.capacidade),
     categoria: req.body.categoria,
-    email: req.body.email
+    email: req.body.email,
+    password: req.body.senha
   };
 
   restaurantes.push(novoRestaurante);
 
   fs.writeFileSync(jsonFile, JSON.stringify(restaurantes, null, 2));
-  
-  fs.writeFileSync('db.js', `const restaurantes = ${JSON.stringify(restaurantes, null, 2)};`);
   
   res.json({ mensagem: 'Restaurante cadastrado com sucesso!' });
 });
@@ -57,16 +69,7 @@ app.post('/salvar', upload.single('foto'), (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
   
-  if (!fs.existsSync('img')) {
-    fs.mkdirSync('img');
-  }
-  
-  const jsonFile = 'restaurantes.json';
-  if (fs.existsSync(jsonFile)) {
-    const data = fs.readFileSync(jsonFile);
-    const restaurantes = JSON.parse(data);
-    fs.writeFileSync('db.js', `const restaurantes = ${JSON.stringify(restaurantes, null, 2)};`);
-  } else {
-    fs.writeFileSync('db.js', 'const restaurantes = [];');
+  if (!fs.existsSync(jsonFile)) {
+    fs.writeFileSync(jsonFile, '[]');
   }
 });
