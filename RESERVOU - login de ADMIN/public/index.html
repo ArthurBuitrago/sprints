@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/index-style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
     <title>Login de Administrador</title>
 </head>
 <body>
     
     <div class="login-container">
         <div class="logo">
-            <a href="index.html"><img src="img/logo-reservou.png" alt="Logo do Reservou"></a>
+            <a href="index.html"><img src="assets/img/image.png" alt="Logo do Reservou"></a>
         </div>
         <h1>Login de restaurante</h1>
         
@@ -48,7 +48,15 @@
                 
                 if (result.success) {
                     messageDiv.className = 'message success';
-                    messageDiv.textContent = result.message;
+                    
+                    messageDiv.textContent = result.message + ' Voltando para a home...';
+                    
+                    localStorage.setItem('restauranteLogado', JSON.stringify(result.user));
+
+                    setTimeout(function() {
+                        window.location.href = '#'; 
+                    }, 5000); 
+
                 } else {
                     messageDiv.className = 'message error';
                     messageDiv.textContent = result.message;

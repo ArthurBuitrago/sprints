@@ -1,15 +1,15 @@
 {
   "name": "reservou---login-de-admin",
   "version": "1.0.0",
-  "main": "db.js",
+  "description": "",
+  "main": "public/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node public/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "express": "^5.1.0"
   }
